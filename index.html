@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090914">
+  <meta name="description" content="Nexora Digital creates professionally configured Discord servers and modern websites. Your vision. Built digitally.">
+  <title>Nexora Digital — Your Vision. Built Digitally.</title>
+  <style>
+    :root {
+      --bg: #090914; --panel: #111124; --panel2: #17172d; --text: #f5f4ff;
+      --muted: #aaa9c2; --purple: #8867ff; --blue: #36c4f5; --line: rgba(255,255,255,.11);
+      --gradient: linear-gradient(110deg, #9b75ff 0%, #5a8dff 55%, #38c8f4 100%);
+      --radius: 22px; --shadow: 0 20px 70px rgba(0,0,0,.35);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      margin: 0; color: var(--text); background:
+        radial-gradient(ellipse at 80% 0%, rgba(110,75,255,.16), transparent 34rem),
+        radial-gradient(ellipse at 0% 45%, rgba(45,170,240,.08), transparent 30rem), var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea, select { font: inherit; }
+    button, a, input, textarea, select { -webkit-tap-highlight-color: transparent; }
+    .container { width: min(1120px, calc(100% - 40px)); margin-inline: auto; }
+    .topbar { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(18px); background: rgba(9,9,20,.78); border-bottom: 1px solid var(--line); }
+    .nav { min-height: 76px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+    .brand { display:flex; align-items:center; gap:11px; font-weight:850; letter-spacing:.08em; }
+    .brand small { display:block; color:var(--muted); font-size:9px; letter-spacing:.34em; margin-top:-4px; }
+    .logo-mark { width:40px; height:40px; flex:none; }
+    .nav-links { display:flex; align-items:center; gap:26px; color:var(--muted); font-size:14px; }
+    .nav-links a:hover, .nav-links a.active { color:white; }
+    .nav-cta, .btn { display:inline-flex; align-items:center; justify-content:center; gap:9px; border:0; cursor:pointer; border-radius:999px; padding:12px 19px; font-weight:750; transition:.2s ease; }
+    .nav-cta, .btn-primary { color:#fff; background:var(--gradient); box-shadow:0 8px 28px rgba(116,95,255,.25); }
+    .nav-cta:hover, .btn-primary:hover { transform:translateY(-2px); filter:brightness(1.1); }
+    .btn-secondary { color:#fff; border:1px solid var(--line); background:rgba(255,255,255,.045); }
+    .btn-secondary:hover { background:rgba(255,255,255,.09); border-color:rgba(255,255,255,.24); }
+    .menu-toggle { display:none; color:white; background:none; border:1px solid var(--line); border-radius:12px; padding:8px 11px; }
+    .hero { padding:100px 0 82px; display:grid; grid-template-columns:1.15fr .85fr; align-items:center; gap:55px; min-height:590px; }
+    .eyebrow { display:inline-flex; align-items:center; gap:9px; color:#c5baff; background:rgba(136,103,255,.11); border:1px solid rgba(136,103,255,.25); padding:7px 12px; border-radius:999px; font-size:12px; font-weight:750; letter-spacing:.1em; text-transform:uppercase; }
+    .pulse { width:7px; height:7px; border-radius:50%; background:#55e2b0; box-shadow:0 0 12px #55e2b0; }
+    h1 { font-size:clamp(44px,6vw,76px); line-height:1.02; letter-spacing:-.055em; margin:22px 0; max-width:720px; }
+    .gradient-text { background:var(--gradient); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .hero p { color:var(--muted); max-width:580px; font-size:18px; margin:0 0 28px; }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:12px; }
+    .trust-line { color:#8888a4; font-size:12px; margin-top:25px; }
+    .hero-art { position:relative; min-height:370px; display:grid; place-items:center; }
+    .orb { position:absolute; width:310px; height:310px; border-radius:50%; background:radial-gradient(circle at 35% 30%,rgba(155,117,255,.35),rgba(54,196,245,.07) 48%,transparent 70%); filter:blur(2px); }
+    .hero-card { position:relative; width:min(100%,390px); padding:27px; border:1px solid rgba(255,255,255,.15); border-radius:28px; background:linear-gradient(145deg,rgba(31,29,61,.92),rgba(14,16,34,.86)); box-shadow:var(--shadow); transform:rotate(2deg); }
+    .hero-card-top { display:flex; justify-content:space-between; align-items:center; color:#c5c4df; font-size:12px; }
+    .status { color:#69e4b4; background:rgba(105,228,180,.1); border:1px solid rgba(105,228,180,.2); padding:5px 9px; border-radius:30px; }
+    .mock-logo { width:100px; height:100px; display:block; margin:28px auto 17px; filter:drop-shadow(0 0 30px rgba(128,102,255,.4)); }
+    .hero-card h3 { text-align:center; font-size:21px; margin:0; letter-spacing:.12em; }
+    .hero-card p { text-align:center; font-size:12px; margin:5px 0 22px; }
+    .mini-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:9px; }
+    .mini-stats div { background:rgba(255,255,255,.045); border:1px solid var(--line); border-radius:13px; padding:12px 8px; text-align:center; }
+    .mini-stats strong { display:block; font-size:17px; }
+    .mini-stats span { color:var(--muted); font-size:10px; }
+    section { padding:82px 0; }
+    .section-head { max-width:660px; margin:0 auto 38px; text-align:center; }
+    .kicker { color:#a994ff; text-transform:uppercase; font-size:11px; font-weight:800; letter-spacing:.18em; }
+    h2 { font-size:clamp(30px,4vw,46px); line-height:1.12; letter-spacing:-.04em; margin:12px 0; }
+    .section-head p, .muted { color:var(--muted); }
+    .service-grid, .price-grid, .portfolio-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:17px; }
+    .card { background:linear-gradient(145deg,rgba(25,25,48,.92),rgba(15,15,30,.92)); border:1px solid var(--line); border-radius:var(--radius); padding:25px; transition:.25s ease; }
+    .card:hover { transform:translateY(-5px); border-color:rgba(142,117,255,.42); box-shadow:0 15px 40px rgba(0,0,0,.2); }
+    .icon-box { width:48px; height:48px; display:grid; place-items:center; border-radius:15px; color:#c5b5ff; background:rgba(136,103,255,.13); border:1px solid rgba(136,103,255,.2); font-size:22px; }
+    .card h3 { margin:18px 0 8px; font-size:19px; }
+    .card p { color:var(--muted); font-size:14px; margin:0; }
+    .feature-list { list-style:none; padding:0; margin:17px 0 0; color:#c6c5d8; font-size:13px; }
+    .feature-list li { margin:8px 0; }
+    .feature-list li::before { content:"✓"; color:#6fe2b4; margin-right:9px; font-weight:900; }
+    .pricing-wrap { background:rgba(255,255,255,.018); border-block:1px solid var(--line); }
+    .price-card { position:relative; display:flex; flex-direction:column; }
+    .price-card.popular { border-color:rgba(137,105,255,.65); box-shadow:0 0 0 1px rgba(137,105,255,.16),0 20px 50px rgba(89,66,200,.12); }
+    .popular-tag { position:absolute; top:16px; right:16px; color:#d7ceff; background:rgba(136,103,255,.18); border:1px solid rgba(136,103,255,.3); padding:5px 9px; border-radius:99px; font-size:10px; font-weight:800; }
+    .price { font-size:40px; font-weight:850; letter-spacing:-.05em; margin:12px 0 0; }
+    .price small { color:var(--muted); font-size:12px; font-weight:500; letter-spacing:0; }
+    .price-card .btn { margin-top:auto; width:100%; }
+    .price-card .feature-list { margin-bottom:25px; }
+    .portfolio-grid { grid-template-columns:repeat(2,1fr); }
+    .portfolio-item { min-height:205px; display:flex; flex-direction:column; justify-content:space-between; overflow:hidden; position:relative; }
+    .portfolio-item::after { content:""; position:absolute; width:190px; height:190px; border-radius:50%; right:-65px; top:-70px; background:radial-gradient(circle,rgba(131,102,255,.26),transparent 70%); }
+    .portfolio-item > * { position:relative; z-index:1; }
+    .portfolio-type { color:#b7a8ff; text-transform:uppercase; letter-spacing:.15em; font-size:10px; font-weight:800; }
+    .portfolio-item h3 { font-size:23px; margin:12px 0 4px; }
+    .portfolio-item p { max-width:430px; }
+    .portfolio-note { color:#777792; font-size:12px; margin-top:15px; }
+    .about-grid { display:grid; grid-template-columns:.9fr 1.1fr; gap:50px; align-items:center; }
+    .about-panel { min-height:280px; border-radius:28px; border:1px solid var(--line); background:radial-gradient(circle at 50% 40%,rgba(128,96,255,.2),transparent 55%),var(--panel); display:grid; place-items:center; }
+    .about-panel svg { width:145px; filter:drop-shadow(0 0 35px rgba(128,102,255,.45)); }
+    .about-copy p { color:var(--muted); }
+    .steps { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:30px; }
+    .step { padding:17px; border:1px solid var(--line); border-radius:16px; background:rgba(255,255,255,.025); }
+    .step b { display:block; color:#b7a6ff; font-size:12px; margin-bottom:8px; }
+    .step strong { font-size:14px; }
+    .contact-section { background:radial-gradient(ellipse at 50% 100%,rgba(101,76,220,.16),transparent 55%); }
+    .contact-grid { display:grid; grid-template-columns:.8fr 1.2fr; gap:28px; align-items:start; }
+    .contact-info p { color:var(--muted); }
+    .contact-form { background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:26px; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:13px; }
+    label { display:block; font-size:12px; color:#d4d2e8; font-weight:700; margin:0 0 7px; }
+    .field { margin-bottom:15px; }
+    input, textarea, select { width:100%; padding:13px 14px; color:white; background:#0b0b19; border:1px solid rgba(255,255,255,.12); border-radius:12px; outline:none; }
+    input:focus, textarea:focus, select:focus { border-color:#8d72ff; box-shadow:0 0 0 3px rgba(141,114,255,.12); }
+    textarea { min-height:115px; resize:vertical; }
+    select option { background:#111124; }
+    .form-help { color:#85849e; font-size:11px; margin:10px 0 0; }
+    .form-message { display:none; padding:12px; margin-top:13px; border-radius:12px; font-size:13px; background:rgba(65,205,157,.1); border:1px solid rgba(65,205,157,.25); color:#a4f1d0; }
+    .faq-list { max-width:780px; margin:auto; }
+    details { border-bottom:1px solid var(--line); padding:18px 0; }
+    summary { cursor:pointer; font-weight:750; list-style:none; display:flex; justify-content:space-between; gap:15px; }
+    summary::after { content:"+"; color:#a994ff; font-size:20px; line-height:1; }
+    details[open] summary::after { content:"−"; }
+    details p { color:var(--muted); font-size:14px; margin:12px 0 0; }
+    footer { border-top:1px solid var(--line); padding:28px 0; color:#85849e; font-size:12px; }
+    .footer-inner { display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap; }
+    .footer-links { display:flex; gap:18px; }
+    .footer-links a:hover { color:white; }
+    .toast { position:fixed; bottom:22px; left:50%; transform:translate(-50%,20px); opacity:0; pointer-events:none; z-index:50; background:#1b1a31; border:1px solid var(--line); padding:12px 18px; border-radius:999px; box-shadow:var(--shadow); transition:.25s; font-size:13px; }
+    .toast.show { opacity:1; transform:translate(-50%,0); }
+    @media (max-width:850px) {
+      .hero { grid-template-columns:1fr; padding-top:75px; gap:20px; }
+      .hero-art { min-height:330px; }
+      .service-grid, .price-grid { grid-template-columns:1fr 1fr; }
+      .about-grid, .contact-grid { grid-template-columns:1fr; }
+      .steps { grid-template-columns:1fr 1fr; }
+    }
+    @media (max-width:650px) {
+      .container { width:min(100% - 30px,1120px); }
+      .menu-toggle { display:block; }
+      .nav-links { display:none; position:absolute; top:75px; left:0; right:0; padding:18px 22px 22px; flex-direction:column; align-items:stretch; gap:16px; background:#0e0e1c; border-bottom:1px solid var(--line); }
+      .nav-links.open { display:flex; }
+      .nav-cta { text-align:center; }
+      .hero { padding:64px 0 45px; }
+      .hero p { font-size:16px; }
+      section { padding:64px 0; }
+      .service-grid, .price-grid, .portfolio-grid { grid-template-columns:1fr; }
+      .form-row { grid-template-columns:1fr; gap:0; }
+      .hero-card { transform:none; }
+      h1 { font-size:clamp(43px,13vw,64px); }
+      .steps { grid-template-columns:1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="Nexora Digital home">
+        <svg class="logo-mark" viewBox="0 0 100 100" role="img" aria-label="Nexora N logo">
+          <defs><linearGradient id="ng" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a17cff"/><stop offset=".55" stop-color="#687dff"/><stop offset="1" stop-color="#39c8f4"/></linearGradient></defs>
+          <path d="M18 78V22h15l34 38V22h15v56H67L33 40v38z" fill="none" stroke="url(#ng)" stroke-width="9" stroke-linejoin="round"/>
+          <path d="M18 78L82 22" stroke="#fff" stroke-opacity=".16" stroke-width="2"/>
+        </svg>
+        <span>NEXORA<small>D I G I T A L</small></span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+      <nav class="nav-links" id="navLinks">
+        <a href="#services">Services</a><a href="#pricing">Pricing</a><a href="#portfolio">Portfolio</a><a href="#about">About</a><a href="#faq">FAQ</a>
+        <a class="nav-cta" href="#contact">Start a project ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container hero" id="home">
+      <div>
+        <div class="eyebrow"><span class="pulse"></span> Digital development studio</div>
+        <h1>Your vision.<br><span class="gradient-text">Built digitally.</span></h1>
+        <p>From fully equipped Discord communities to modern websites, Nexora Digital turns your ideas into polished online experiences.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact">Start a project <span>↗</span></a>
+          <a class="btn btn-secondary" href="#services">Explore services</a>
+        </div>
+        <div class="trust-line">DISCORD DEVELOPMENT &nbsp;·&nbsp; WEBSITE DESIGN &nbsp;·&nbsp; DIGITAL SOLUTIONS</div>
+      </div>
+      <div class="hero-art" aria-label="Nexora Digital brand preview">
+        <div class="orb"></div>
+        <div class="hero-card">
+          <div class="hero-card-top"><span>✦ NEXORA STUDIO</span><span class="status">● Ready to build</span></div>
+          <svg class="mock-logo" viewBox="0 0 100 100" aria-hidden="true">
+            <defs><linearGradient id="ng2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a17cff"/><stop offset=".55" stop-color="#687dff"/><stop offset="1" stop-color="#39c8f4"/></linearGradient></defs>
+            <path d="M18 78V22h15l34 38V22h15v56H67L33 40v38z" fill="none" stroke="url(#ng2)" stroke-width="9" stroke-linejoin="round"/>
+          </svg>
+          <h3>NEXORA DIGITAL</h3><p>YOUR VISION. BUILT DIGITALLY.</p>
+          <div class="mini-stats"><div><strong>01</strong><span>Think</span></div><div><strong>02</strong><span>Design</span></div><div><strong>03</strong><span>Build</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-head"><div class="kicker">What we do</div><h2>Digital services, <span class="gradient-text">built around you.</span></h2><p>Whether you're starting a community or building an online presence, get the right setup without the technical headache.</p></div>
+        <div class="service-grid">
+          <article class="card"><div class="icon-box">⌘</div><h3>Discord server development</h3><p>Organised, welcoming and carefully configured Discord servers for communities, creators, gaming groups and private spaces.</p><ul class="feature-list"><li>Channels, categories and roles</li><li>Permissions and moderation</li><li>Bot setup and configuration</li><li>Welcome, tickets and logging</li></ul></article>
+          <article class="card"><div class="icon-box">▧</div><h3>Website development</h3><p>Modern, responsive websites that introduce your project, showcase your work or help your business get online.</p><ul class="feature-list"><li>Landing pages and portfolios</li><li>Small business websites</li><li>Mobile-friendly layouts</li><li>Contact forms and integrations</li></ul></article>
+          <article class="card"><div class="icon-box">✧</div><h3>Digital setup</h3><p>Thoughtful finishing touches to help your online space feel consistent, clear and ready for its audience.</p><ul class="feature-list"><li>Structure and presentation</li><li>Basic visual styling</li><li>Setup guidance</li><li>Custom project quotations</li></ul></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="pricing-wrap" id="pricing">
+      <div class="container">
+        <div class="section-head"><div class="kicker">Straightforward pricing</div><h2>Choose your <span class="gradient-text">starting point.</span></h2><p>Example launch packages. Final quotes depend on the features, complexity and agreed scope of your project.</p></div>
+        <h3 style="text-align:center;margin:0 0 18px">Discord servers</h3>
+        <div class="price-grid">
+          <article class="card price-card"><div class="kicker">Starter</div><div class="price">£10</div><p class="muted">A clean foundation for a new server.</p><ul class="feature-list"><li>Server structure</li><li>Channels and categories</li><li>Roles and permissions</li><li>Basic organisation</li></ul><button class="btn btn-secondary choose-package" data-package="Discord — Starter (£10)">Enquire about Starter</button></article>
+          <article class="card price-card popular"><span class="popular-tag">POPULAR</span><div class="kicker">Advanced</div><div class="price">£25</div><p class="muted">More tools for an active community.</p><ul class="feature-list"><li>Everything in Starter</li><li>Bot configuration</li><li>Welcome and moderation</li><li>Reaction or button roles</li><li>Custom embeds and logging</li></ul><button class="btn btn-primary choose-package" data-package="Discord — Advanced (£25)">Enquire about Advanced ↗</button></article>
+          <article class="card price-card"><div class="kicker">Ultimate</div><div class="price">£50</div><p class="muted">A more complete community setup.</p><ul class="feature-list"><li>Everything in Advanced</li><li>Ticket system</li><li>Advanced configuration</li><li>Custom server structure</li><li>Additional security setup</li></ul><button class="btn btn-secondary choose-package" data-package="Discord — Ultimate (£50)">Enquire about Ultimate</button></article>
+        </div>
+        <h3 style="text-align:center;margin:48px 0 18px">Websites</h3>
+        <div class="price-grid">
+          <article class="card price-card"><div class="kicker">Landing page</div><div class="price">£40</div><p class="muted">A focused one-page introduction.</p><ul class="feature-list"><li>One-page layout</li><li>Responsive styling</li><li>Contact section</li><li>Basic visual design</li></ul><button class="btn btn-secondary choose-package" data-package="Website — Landing page (£40)">Enquire about Landing page</button></article>
+          <article class="card price-card"><div class="kicker">Business</div><div class="price">£80</div><p class="muted">More room to explain what you offer.</p><ul class="feature-list"><li>Up to four pages</li><li>Custom styling</li><li>Mobile-friendly layout</li><li>Contact form setup</li><li>Basic SEO setup</li></ul><button class="btn btn-secondary choose-package" data-package="Website — Business (£80)">Enquire about Business</button></article>
+          <article class="card price-card"><div class="kicker">Premium</div><div class="price">£150+</div><p class="muted">A bespoke website for bigger ideas.</p><ul class="feature-list"><li>Custom multi-page design</li><li>Advanced features</li><li>Animations and interactions</li><li>Additional integrations</li><li>Quoted to project scope</li></ul><button class="btn btn-secondary choose-package" data-package="Website — Premium (from £150)">Enquire about Premium</button></article>
+        </div>
+        <p class="portfolio-note" style="text-align:center">Domain names, hosting, paid plugins and other third-party services are not included unless specifically stated in your quote.</p>
+      </div>
+    </section>
+
+    <section id="portfolio">
+      <div class="container">
+        <div class="section-head"><div class="kicker">Selected work</div><h2>A glimpse of what <span class="gradient-text">we can build.</span></h2><p>These are concept examples to show the kinds of projects Nexora can create. Replace them with real client work as your portfolio grows.</p></div>
+        <div class="portfolio-grid">
+          <article class="card portfolio-item"><div><div class="portfolio-type">Discord concept · Community</div><h3>Community Hub</h3><p class="muted">A welcoming server layout with clear channels, helpful roles and moderation tools.</p></div><span class="portfolio-note">Concept project · Example layout</span></article>
+          <article class="card portfolio-item"><div><div class="portfolio-type">Discord concept · Gaming</div><h3>Squad Central</h3><p class="muted">A gaming community setup with LFG channels, announcements and member roles.</p></div><span class="portfolio-note">Concept project · Example layout</span></article>
+          <article class="card portfolio-item"><div><div class="portfolio-type">Website concept · Business</div><h3>Studio Landing</h3><p class="muted">A clean business landing page designed to introduce a service and generate enquiries.</p></div><span class="portfolio-note">Concept project · Example layout</span></article>
+          <article class="card portfolio-item"><div><div class="portfolio-type">Website concept · Portfolio</div><h3>Creator Portfolio</h3><p class="muted">A personal showcase for projects, links and contact information.</p></div><span class="portfolio-note">Concept project · Example layout</span></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container about-grid">
+        <div class="about-panel">
+          <svg viewBox="0 0 100 100" role="img" aria-label="Nexora geometric N logo"><defs><linearGradient id="ng3" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a17cff"/><stop offset=".55" stop-color="#687dff"/><stop offset="1" stop-color="#39c8f4"/></linearGradient></defs><path d="M18 78V22h15l34 38V22h15v56H67L33 40v38z" fill="none" stroke="url(#ng3)" stroke-width="9" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="about-copy"><div class="kicker">About Nexora</div><h2>Good ideas deserve a <span class="gradient-text">great digital home.</span></h2><p>Nexora Digital is a digital development service focused on making online spaces easier to launch and better to use. From a Discord server for your community to a website for your next idea, each project starts with understanding what you need.</p><p>Our approach is simple: clear communication, thoughtful design and a setup that fits the purpose.</p><a class="btn btn-secondary" href="#contact">Tell us about your idea ↗</a></div>
+      </div>
+      <div class="container steps">
+        <div class="step"><b>01 / DISCOVER</b><strong>Tell us what you need</strong></div>
+        <div class="step"><b>02 / PLAN</b><strong>Agree features and price</strong></div>
+        <div class="step"><b>03 / CREATE</b><strong>We build your project</strong></div>
+        <div class="step"><b>04 / DELIVER</b><strong>Review and handover</strong></div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <div class="container">
+        <div class="section-head"><div class="kicker">Let's make it happen</div><h2>Have a project in <span class="gradient-text">mind?</span></h2><p>Share a few details and start a conversation about what you'd like Nexora to build.</p></div>
+        <div class="contact-grid">
+          <div class="contact-info"><h3>Start with an idea.</h3><p>You don't need every detail figured out. Tell us what you're hoping to create and we'll work through the requirements together.</p><p><strong style="color:#fff">Email</strong><br><span class="muted">dewicowling@gmail.com</span></p><p class="portfolio-note">Remember to replace the example email address in this page's code before publishing.</p></div>
+          <form class="contact-form" id="enquiryForm">
+            <div class="form-row">
+              <div class="field"><label for="name">Your name</label><input id="name" name="name" placeholder="Name" required maxlength="80"></div>
+              <div class="field"><label for="email">Email address</label><input id="email" name="email" type="email" placeholder="you@example.com" required maxlength="120"></div>
+            </div>
+            <div class="form-row">
+              <div class="field"><label for="service">What do you need?</label><select id="service" name="service" required><option value="">Select a service</option><option>Discord server</option><option>Website</option><option>Other digital project</option></select></div>
+              <div class="field"><label for="budget">Approximate budget</label><select id="budget" name="budget"><option>Not sure yet</option><option>Under £25</option><option>£25–£50</option><option>£50–£100</option><option>£100–£200</option><option>£200+</option></select></div>
+            </div>
+            <div class="field"><label for="package">Package (optional)</label><input id="package" name="package" placeholder="e.g. Discord Advanced"></div>
+            <div class="field"><label for="message">Tell us about your project</label><textarea id="message" name="message" placeholder="What would you like created? Any features or ideas?" required maxlength="2000"></textarea></div>
+            <button class="btn btn-primary" type="submit" style="width:100%">Prepare enquiry ↗</button>
+            <p class="form-help">This demo prepares an email using your email app. It does not store or send your details to a server.</p>
+            <div class="form-message" id="formMessage" role="status"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="container">
+        <div class="section-head"><div class="kicker">Quick answers</div><h2>Frequently asked <span class="gradient-text">questions.</span></h2></div>
+        <div class="faq-list">
+          <details><summary>How does ordering work?</summary><p>Send an enquiry with an outline of your idea. Nexora can then confirm the scope, price, estimated timeline and next steps before work begins.</p></details>
+          <details><summary>Can I request custom features?</summary><p>Yes. Packages are starting points. More specific requirements can be discussed and quoted separately.</p></details>
+          <details><summary>Are domains and hosting included?</summary><p>Not by default. Domain registration, hosting and paid third-party tools should be agreed separately before a project starts.</p></details>
+          <details><summary>Can you make a private Discord server?</summary><p>Yes. Discord setups can be tailored for private friend groups, public communities, gaming groups and other suitable uses.</p></details>
+          <details><summary>How long will my project take?</summary><p>It depends on the size and complexity. You'll receive an estimated timeline once the requirements are understood.</p></details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <a class="brand" href="#home"><svg class="logo-mark" viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="ng4" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a17cff"/><stop offset=".55" stop-color="#687dff"/><stop offset="1" stop-color="#39c8f4"/></linearGradient></defs><path d="M18 78V22h15l34 38V22h15v56H67L33 40v38z" fill="none" stroke="url(#ng4)" stroke-width="9" stroke-linejoin="round"/></svg><span>NEXORA<small>D I G I T A L</small></span></a>
+      <span>© <span id="year"></span> Nexora Digital. All rights reserved.</span>
+      <div class="footer-links"><a href="#services">Services</a><a href="#pricing">Pricing</a><a href="#contact">Contact</a></div>
+    </div>
+  </footer>
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+    // IMPORTANT: Replace this with your real business email before publishing.
+    const BUSINESS_EMAIL = "dewicowling@gmail.com";
+
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+    menuToggle.addEventListener("click", () => {
+      const open = navLinks.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(open));
+      menuToggle.textContent = open ? "✕" : "☰";
+    });
+    navLinks.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
+      navLinks.classList.remove("open");
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.textContent = "☰";
+    }));
+
+    document.querySelectorAll(".choose-package").forEach(button => {
+      button.addEventListener("click", () => {
+        document.getElementById("package").value = button.dataset.package;
+        document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+        document.getElementById("name").focus({ preventScroll: true });
+        showToast("Package added to your enquiry.");
+      });
+    });
+
+    document.getElementById("enquiryForm").addEventListener("submit", event => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      if (!form.reportValidity()) return;
+      if (BUSINESS_EMAIL === "dewicowling@gmail.com") {
+        const msg = document.getElementById("formMessage");
+        msg.style.display = "block";
+        msg.textContent = "The form is ready, but the business email is still a placeholder. Replace dewicowling@gmail.com in the code and try again.";
+        return;
+      }
+      const data = new FormData(form);
+      const subject = encodeURIComponent("Nexora Digital project enquiry — " + data.get("service"));
+      const body = encodeURIComponent(
+        "Name: " + data.get("name") + "\nEmail: " + data.get("email") +
+        "\nService: " + data.get("service") + "\nBudget: " + data.get("budget") +
+        "\nPackage: " + (data.get("package") || "Not specified") +
+        "\n\nProject details:\n" + data.get("message")
+      );
+      document.getElementById("formMessage").style.display = "block";
+      document.getElementById("formMessage").textContent = "Opening your email app with the enquiry. Please review and send it there.";
+      window.location.href = `mailto:${BUSINESS_EMAIL}?subject=${subject}&body=${body}`;
+    });
+
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(window.__nexoraToast);
+      window.__nexoraToast = setTimeout(() => toast.classList.remove("show"), 2400);
+    }
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
